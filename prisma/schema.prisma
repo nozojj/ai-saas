@@ -11,3 +11,44 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum CreditType {
+  USE
+  PURCHASE
+}
+
+enum SubscriptionStatus {
+  FREE
+  PRO
+}
+
+model User {
+  id                 String             @id @default(uuid())
+  clerkId            String             @unique
+  email              String             @unique
+  credits            Int                @default(5)
+  subscriptionStatus SubscriptionStatus @default(FREE)
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  images          ImageGeneration[]
+  creditHistories CreditHistory[]
+}
+
+model ImageGeneration {
+  id        String   @id @default(uuid())
+  prompt    String
+  imageUrl  String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model CreditHistory {
+  id        String     @id @default(uuid())
+  userId    String
+  amount    Int
+  type      CreditType
+  user      User       @relation(fields: [userId], references: [id])
+  createdAt DateTime   @default(now())
+}
