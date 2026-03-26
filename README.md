@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Image SaaS
 
-## Getting Started
+AI画像生成ができるSaaSアプリです。  
+ユーザー認証、画像生成、履歴保存、クレジット管理まで実装しています。
 
-First, run the development server:
+## Demo
+
+- App: （VercelのURLをここに入れる）
+- GitHub: （このリポジトリのURL）
+
+## Features
+
+- Clerkによるユーザー認証
+- Stability AIを使った画像生成
+- Supabase Storageへの画像保存
+- 生成履歴の表示
+- クレジット消費機能
+- ダッシュボード表示
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Clerk
+- Prisma
+- Supabase
+- Supabase Storage
+- Stability AI
+- Tailwind CSS
+- shadcn/ui
+
+## Pages
+
+- `/` トップページ
+- `/dashboard` ダッシュボード
+- `/generate` 画像生成
+- `/history` 履歴一覧
+- `/pricing` 料金ページ
+
+## How It Works
+
+1. ユーザーがログイン
+2. プロンプトを入力して画像生成
+3. Stability AIで画像を生成
+4. Supabase Storageに画像を保存
+5. DBに履歴を保存
+6. クレジットを1消費
+
+## Setup
 
 ```bash
+git clone https://github.com/あなたのユーザー名/ai-saas.git
+cd ai-saas
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

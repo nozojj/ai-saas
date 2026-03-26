@@ -3,9 +3,19 @@ import { supabaseAdmin } from "@/lib/supabase-admin";
 import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { translatePromptIfNeeded } from "@/lib/translate-prompt";
+import { auth } from "@clerk/nextjs/server";
 
 export async function POST(req: Request) {
   try {
+    const { userId, isAuthenticated } = await auth();
+
+    if (!isAuthenticated || !userId) {
+      return NextResponse.json(
+        {message: "許可されていません"},
+        {status: 401},
+      );
+    }
+
     const { prompt } = await req.json();
 
     if (!prompt || !prompt.trim()) {

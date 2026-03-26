@@ -11,11 +11,11 @@ export default async function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="flex gap-4">
-        <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+        <SignInButton mode="modal">
           <Button variant="outline">ログイン</Button>
         </SignInButton>
 
-        <SignUpButton mode="modal" forceRedirectUrl="/dashboard">
+        <SignUpButton mode="modal">
           <Button variant="outline">新規登録</Button>
         </SignUpButton>
       </div>

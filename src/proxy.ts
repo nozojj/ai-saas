@@ -5,6 +5,7 @@ const isProtectedRoute = createRouteMatcher([
   "/generate(.*)",
   "/history(.*)",
   "/pricing(.*)",
+  "/api/generate-image(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
