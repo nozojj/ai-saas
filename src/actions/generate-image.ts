@@ -1,3 +1,5 @@
+"use server";
+
 import { CreditType } from "@/generated/prisma/enums";
 import { prisma } from "@/lib/prisma";
 import { getDbUser } from "@/lib/user";
@@ -33,7 +35,7 @@ export async function saveGenerationAndConsumeCredit({
     const creditHistory = await tx.creditHistory.create({
       data: {
         userId: dbUser.id,
-        amount: 1,
+        amount: -1,
         type: CreditType.USE,
       },
     });
