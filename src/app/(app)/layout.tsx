@@ -7,19 +7,30 @@ export default function AppLayoutHeader({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen">
-      <header className="flex items-center justify-between">
-        <h1 className="text-xl font-bold">AI SaaS</h1>
-        <nav className="flex items-center gap-4">
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/generate"> Generate</Link>
-          <Link href="/history">History</Link>
-          <Link href="/pricing">Pricing</Link>
+    <div className="min-h-screen bg-slate-50">
+      <header className="border-b bg-white">
+        <Link href="/dashboard" className="text-xl font-bold text-slate-900">
+          AI SaaS
+        </Link>
+        <nav className="flex items-center gap-4 text-sm font-medium text-slate-600">
+          <Link href="/dashboard" className="hover:text-slate-900">
+            Dashboard
+          </Link>
+          <Link href="/generate" className="hover:text-slate-900">
+            {" "}
+            Generate
+          </Link>
+          <Link href="/history" className="hover:text-slate-900">
+            History
+          </Link>
+          <Link href="/pricing" className="hover:text-slate-900">
+            Pricing
+          </Link>
           <UserButton />
         </nav>
       </header>
 
-      <main className="mx-auto max-w-6xl p-6">{children}</main>
+      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">{children}</main>
     </div>
   );
 }

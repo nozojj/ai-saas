@@ -11,13 +11,7 @@ export default function GeneratePage() {
   const [loading, setLoading] = useState(false);
 
   const handleGenerate = async () => {
-    if (loading) return;
     try {
-      if (!prompt.trim()) {
-        toast.error("プロンプトを入力してください");
-        return;
-      }
-
       setLoading(true);
 
       const res = await fetch("/api/generate-image", {
@@ -47,25 +41,12 @@ export default function GeneratePage() {
     }
   };
   return (
-    <div className="flex flex-col gap-4 max-w-md">
-      <input
-        className="border p-2 rounded"
-        value={prompt}
-        onChange={(e) => setPrompt(e.target.value)}
-        placeholder="画像にキーワードを入力してください"
-      />
-      <Button onClick={handleGenerate} disabled={loading}>
-        {loading ? "Generating..." : "Generate"}
-      </Button>
-      {image && (
-        <Image
-          src={image}
-          alt="Generated"
-          width={300}
-          height={300}
-          className="rounded-lg mt-4"
-        />
-      )}
+    <div>
+      <div>
+        <div>
+          <h1></h1>
+        </div>
+      </div>
     </div>
   );
 }
