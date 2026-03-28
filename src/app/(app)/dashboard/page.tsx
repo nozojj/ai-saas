@@ -7,8 +7,7 @@ export default async function DashboardPage() {
   const dbUser = await getDbUser();
 
   if (!dbUser) {
-    return;
-    <div>ログインしてください</div>;
+    return <div>ログインしてください</div>;
   }
 
   const recentImages = await prisma.imageGeneration.findMany({
