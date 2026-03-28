@@ -7,7 +7,7 @@ export default async function DashboardPage() {
   const dbUser = await getDbUser();
 
   if (!dbUser) {
-    return <div>ログインしてください</div>;
+    return <div className="p-6 text-black">ログインしてください</div>;
   }
 
   const recentImages = await prisma.imageGeneration.findMany({
@@ -32,7 +32,7 @@ export default async function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:cols-3">
-        <div className="rounded-2xl border bg-white p-66 shadow-sm lg:col-span-2">
+        <div className="rounded-2xl border bg-white p-6 shadow-sm lg:col-span-2">
           <p className="text-sm font-medium text-slate-500 ">
             残りのクレジット
           </p>
