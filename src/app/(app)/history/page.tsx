@@ -22,22 +22,24 @@ export default async function HistoryPage() {
     },
   });
   return (
-    <div className="space-y-6 p-6">
-      <div>
-        <h1 className="text-2xl font-bold">History</h1>
-        <p className="p-6 text-sm text-muted-foreground">これまでに生成した画像一覧</p>
+    <div className="space-y-8">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold tracking-tight tet-slate-900">History</h1>
+        <p className="text-sm text-slate-600 sm:text-base">
+          これまでに生成した画像一覧
+        </p>
       </div>
 
       {images.length === 0 ? (
-        <div className="rounded-lg border p-6 text-sm text-muted-foreground">
+        <div className="rounded-2xl border border-dashed bg-white p-10 text-center text-sm text-slate-500 shadow-sm">
           まだ画像がありません
         </div>
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {images.map((image) => (
             <div
               key={image.id}
-              className="overflow-hidden rounded-xl border bg-background shadow-sm"
+              className="overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:-y-1 hover:shadow-md"
             >
               <div className="relative aspect-square">
                 <Image
@@ -48,10 +50,10 @@ export default async function HistoryPage() {
                 />
               </div>
               <div className="space-y-2 p-4">
-                <p className="line-clamp-2 text-sm font-medium">
+                <p className="line-clamp-2 text-sm font-medium text-slate-800">
                   {image.prompt}
                 </p>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-slate-500">
                   {new Date(image.createdAt).toLocaleString("ja-JP")}
                 </p>
               </div>
