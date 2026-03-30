@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -41,7 +42,7 @@ export default function AppLayoutHeader({
               </div>
 
               {/* スマホ用 ハンバーガー */}
-              <button
+              <Button
                 type="button"
                 onClick={() => setIsOpen((prev) => !prev)}
                 className="inline-flex items-center justify-center rounded-md border p-2 text-slate-700 hover:bg-slate-100 sm:hidden"
@@ -78,7 +79,7 @@ export default function AppLayoutHeader({
                     <path d="M4 18h16" />
                   </svg>
                 )}
-              </button>
+              </Button>
             </div>
           </div>
 
