@@ -8,6 +8,10 @@ const PRICE_MAP = {
     priceId: "price_1TFUsG1W3YqPTWduVJZC37U0",
     creditsToAdd: 100,
   },
+  pro: {
+    priceId: "price_1TGNa71W3YqPTWdulmt8iT3V",
+    creditsToAdd: 500,
+  },
 } as const;
 
 export async function POST(req: Request) {

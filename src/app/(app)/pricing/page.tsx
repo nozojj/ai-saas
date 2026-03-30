@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function PricingJPage() {
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
 
-  const handleCheckout = async (plan: "basic") => {
+  const handleCheckout = async (plan: "basic" | "pro") => {
     try {
       setLoadingPlan(plan);
 
@@ -55,7 +55,7 @@ export default function PricingJPage() {
           <ul className="mt-6 space-y-3 tet-sm text-slate-600">
             <li>・画像生成用クレジット100枚</li>
             <li>・買い切りプラン</li>
-            <li>・すぐに追加可能</li>
+            <li>・まず試したい人向け</li>
           </ul>
           <Button
             className="mt-8 w-full"
@@ -72,14 +72,34 @@ export default function PricingJPage() {
           </div>
           <div className="space-y-2">
             <p className="text-sm font-medium text-slate-500">Pro</p>
-            <h2 className="text-3xl font-bold text-slate-900">Coming Soon</h2>
-            <p className="text-sm text-slate-600">より大きいプランを追加予定</p>
+            <h2 className="text-3xl font-bold text-slate-900">¥1,500</h2>
+            <p className="text-sm text-slate-600">500 credits</p>
           </div>
           <ul className="mt-6 space-y-3 text-sm text-slate-600">
-            <li>・もっと多いクレジット</li>
-            <li>・お得な価格設定</li>
-            <li>・あとで追加予定</li>
+            <li>・画像生成用クレジット500枚</li>
+            <li>・Basicよりお得</li>
+            <li>・継続して使いたい人向け</li>
           </ul>
+          <Button className="mt-8 w-full"
+          onClick={() => handleCheckout("pro")} 
+          disabled={loadingPlan === "pro"}>
+           {loadingPlan === "pro" ?  "Loading..." : "Buy Pro"}
+          </Button>
+        </div>
+
+        <div className="rounded-2xl border bg-white p-6 shadow-sm opacity-80">
+          <div className="space-y-2">
+            <p className="text-sm font-medium text-slate-500">Premium</p>
+            <h2 className="text-3xl font-bold text-slate-900">Coming Soon</h2>
+            <p className="text-sm text-slate-600">More credits / More features</p>
+          </div>
+
+          <ul className="mt-6 space-y-3 text-sm text-slate-600">
+            <li>・さらに多いクレジット</li>
+            <li>・将来的な拡張用</li>
+            <li>・近日追加予定</li>
+          </ul>
+
           <Button className="mt-8 w-full" disabled>
             Coming Soon
           </Button>
