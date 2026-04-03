@@ -1,56 +1,78 @@
-# AI Image SaaS
+# AI Image Generator SaaS
 
-AI画像生成ができるSaaSアプリです。  
-ユーザー認証、画像生成、履歴保存、クレジット管理まで実装しています。
+テキスト（プロンプト）からAI画像を生成できるSaaS型Webアプリです。  
+クレジット制・認証・決済まで実装しています。
 
-## Demo
+## 🎯 作成目的
 
-- App: （VercelのURLをここに入れる）
-- GitHub: （このリポジトリのURL）
+AIを活用したサービス開発の理解を深めるために作成しました。
 
-## Features
+---
 
-- Clerkによるユーザー認証
-- Stability AIを使った画像生成
-- Supabase Storageへの画像保存
-- 生成履歴の表示
-- クレジット消費機能
-- ダッシュボード表示
+## 🚀 デモ
 
-## Tech Stack
+👉 https://ai-saas-eight-sooty.vercel.app/
 
-- Next.js
+## 📸 スクリーンショット
+
+### Dashboard
+
+![dashboard](./public/dashboard.png)
+
+### Generate
+
+![generate](./public/generate.png)
+
+### History
+
+![history](./public/history.png)
+
+---
+
+## 📸 機能
+
+- ✨ AI画像生成（Stability AI）
+- 🧠 プロンプト入力による画像生成
+- 🕘 生成履歴の保存・表示
+- 💳 クレジット制（Stripe決済）
+- 🔐 認証（Clerk）
+- 📥 画像ダウンロード
+- 🖼 モーダルで画像拡大表示
+
+---
+
+## 🛠 使用技術
+
+### フロントエンド
+
+- Next.js (App Router)
 - TypeScript
-- Clerk
-- Prisma
-- Supabase
-- Supabase Storage
-- Stability AI
 - Tailwind CSS
 - shadcn/ui
 
-## Pages
+### バックエンド
 
-- `/` トップページ
-- `/dashboard` ダッシュボード
-- `/generate` 画像生成
-- `/history` 履歴一覧
-- `/pricing` 料金ページ
+- Next.js API Routes
+- Prisma
+- PostgreSQL (Supabase)
 
-## How It Works
+### 認証・決済
 
-1. ユーザーがログイン
-2. プロンプトを入力して画像生成
-3. Stability AIで画像を生成
-4. Supabase Storageに画像を保存
-5. DBに履歴を保存
-6. クレジットを1消費
+- Clerk（認証）
+- Stripe（決済）
 
-## Setup
+### その他
+
+- Stability AI API（画像生成）
+- Vercel（デプロイ）
+
+---
+
+## ⚙️ 環境構築
+
+### 1. リポジトリをクローン
 
 ```bash
-git clone https://github.com/あなたのユーザー名/ai-saas.git
+git clone https://github.com/nozojj/ai-saas.git
 cd ai-saas
-npm install
-npm run dev
 ```

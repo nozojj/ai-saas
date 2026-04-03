@@ -42,7 +42,7 @@ export default async function DashboardPage({
     <div className="space-y-8">
       {params.payment === "success" && (
         <div className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
-          クレジット購入が完了しまた
+          クレジット購入が完了しました
         </div>
       )}
 
@@ -52,7 +52,7 @@ export default async function DashboardPage({
         </div>
       )}
 
-      <div className="space-y-8">
+      <div>
         <div className="space-y-2">
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">
             Dashboard
@@ -71,16 +71,17 @@ export default async function DashboardPage({
               <span className="text-5xl font-bold text-slate-900">
                 {dbUser.credits}
               </span>
+              <span className="pb-1 text-sm text-slate-500">credits</span>
             </div>
             <p className="mt-3 text-sm text-slate-600">
               画像を一回生成するごとにクレジット1を消費します
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Button asChild>
+              <Button asChild className="w-full sm:w-auto">
                 <Link href="/generate">画像を生成する</Link>
               </Button>
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className="w-full sm:w-auto">
                 <Link href="/pricing">クレジットを購入する</Link>
               </Button>
             </div>
@@ -120,7 +121,7 @@ export default async function DashboardPage({
               まだ画像がありません
             </div>
           ) : (
-            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3 xl:grid-cool">
               {recentImages.map((image) => (
                 <div
                   key={image.id}

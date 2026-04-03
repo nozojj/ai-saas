@@ -13,14 +13,20 @@ export default async function Home() {
         </h1>
         <p className="text-lg text-slate-600">
           プロンプトを入力するだけでAIが画像を生成します。
+          <br />
           クレジット制で簡単に使える画像生成サービス
         </p>
 
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           {userId ? (
+            <>
             <Button asChild size="lg">
               <Link href="/dashboard">ダッシュボードへ</Link>
             </Button>
+            <Button asChild size="lg">
+              <Link href="/generate">画像生成する</Link>
+            </Button>
+            </>
           ) : (
             <>
               <Button asChild size="lg">
@@ -36,8 +42,9 @@ export default async function Home() {
       </div>
 
       <div className="mt-16 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-slate-600">簡単操作</h3>
+        <div className="rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+          <div className="mb-3 text-2xl">✨</div>
+          <h3 className="text-lg font-semibold text-slate-900">簡単操作</h3>
           <p className="mt-2 text-sm  text-slate-600">
             プロンプトを入力するだけで画像生成
           </p>

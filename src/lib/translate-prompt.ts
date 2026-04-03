@@ -1,7 +1,7 @@
 import { openai } from "./openai";
 
 function looksJapanese(text: string) {
-  return /[ぁ-んァ-ン一-龠]/.test(text);
+  return /[ぁ-んァ-ン一-龥]/.test(text);
 }
 
 export async function translatePromptIfNeeded(prompt: string) {
@@ -9,20 +9,20 @@ export async function translatePromptIfNeeded(prompt: string) {
     return prompt;
   }
 
-
-const response = await openai.responses.create({
+  const response = await openai.responses.create({
     model: "gpt-5.4-mini",
     input: [
-        {
-            role: "system",
-            content:
-             "You convert Japanese image prompts into natural English prompts for AI image generation. Return only the English prompt."
-        },
-        {
-            role: "user",
-            content: prompt
-        },
+      {
+        role: "system",
+        content:
+          "You convert Japanese image prompts into natural English prompts for AI image generation. Return only the English prompt.",
+      },
+      {
+        role: "user",
+        content: prompt,
+      },
     ],
-});
-return response.output_text.trim()
+  });
+
+  return response.output_text?.trim() || prompt;
 }

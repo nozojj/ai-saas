@@ -22,21 +22,26 @@ export default function GeneratePage() {
 
       const link = document.createElement("a");
       link.href = url;
-      link.download = "generated=image.png";
+      link.download = "generated-image.png";
       document.body.appendChild(link);
       link.click();
       link.remove();
 
       window.URL.revokeObjectURL(url);
 
-      toast.success("画像をダウンロード");
+      toast.success("画像をダウンロードしました");
     } catch (error) {
       console.error(error);
-      toast("ダウンロードに失敗しました");
+      toast.error("ダウンロードに失敗しました");
     }
   };
 
   const handleGenerate = async () => {
+    if (!prompt.trim()) {
+      toast.error("プロンプトを入力してください");
+      return;
+    }
+
     setImage("");
 
     try {
@@ -68,12 +73,13 @@ export default function GeneratePage() {
       setLoading(false);
     }
   };
+
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
       <div className="rounded-2xl border bg-white p-6 shadow-sm">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-            generate
+            Generate
           </h1>
           <p className="text-sm text-slate-600 sm:text-base">
             プロンプトを入力してAI画像を生成します
@@ -90,10 +96,10 @@ export default function GeneratePage() {
             </Label>
             <Textarea
               id="prompt"
-              className="min-h-32 w-full rounded-md border px-3 py-2 text-sm outline-none"
+              className="min-h-32 resize-none"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="例: a cat reading a book  on the beach"
+              placeholder="例: a cat reading a book on the beach"
             />
           </div>
 

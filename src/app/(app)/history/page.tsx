@@ -1,30 +1,38 @@
+import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { getDbUser } from "@/lib/user";
-import Image from "next/image";
+import Link from "next/link";
+import HistoryGallery from "@/components/history/history-gallery";
 
 export default async function HistoryPage() {
   const dbUser = await getDbUser();
 
   if (!dbUser) {
     return (
-      <div className="p-6 text-sm text-muted-foreground">
-        ログインしてください
+      <div className="flex flex-col items-center justify-center space-y-4 py-20 text-center">
+        <h2 className="text-xl font-semibold">ログインが必要です</h2>
+        <p className="text-sm text-slate-500">
+          このページを利用するにはログインしてください
+        </p>
+
+        <Button asChild>
+          <Link href="/sign-in">ログインする</Link>
+        </Button>
       </div>
     );
   }
 
   const images = await prisma.imageGeneration.findMany({
-    where: {
-      userId: dbUser.id,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
+    where: { userId: dbUser.id },
+    orderBy: { createdAt: "desc" },
   });
+
   return (
     <div className="space-y-8">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight tet-slate-900">History</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+          History
+        </h1>
         <p className="text-sm text-slate-600 sm:text-base">
           これまでに生成した画像一覧
         </p>
@@ -32,34 +40,13 @@ export default async function HistoryPage() {
 
       {images.length === 0 ? (
         <div className="rounded-2xl border border-dashed bg-white p-10 text-center text-sm text-slate-500 shadow-sm">
-          まだ画像がありません
+          <p>まだ画像がありません</p>
+          <Button asChild variant="outline" className="mt-4">
+            <Link href="/generate">画像生成する</Link>
+          </Button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {images.map((image) => (
-            <div
-              key={image.id}
-              className="overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:-y-1 hover:shadow-md"
-            >
-              <div className="relative aspect-square">
-                <Image
-                  src={image.imageUrl}
-                  alt={image.prompt}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="space-y-2 p-4">
-                <p className="line-clamp-2 text-sm font-medium text-slate-800">
-                  {image.prompt}
-                </p>
-                <p className="text-xs text-slate-500">
-                  {new Date(image.createdAt).toLocaleString("ja-JP")}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <HistoryGallery images={images} />
       )}
     </div>
   );

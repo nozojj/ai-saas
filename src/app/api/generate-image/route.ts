@@ -7,25 +7,24 @@ import { auth } from "@clerk/nextjs/server";
 
 export async function POST(req: Request) {
   try {
-    const { userId, isAuthenticated } = await auth();
+    const { userId } = await auth();
 
-    if (!isAuthenticated || !userId) {
+    if (!userId) {
       return NextResponse.json(
-        {message: "許可されていません"},
-        {status: 401},
+        { message: "許可されていません" },
+        { status: 401 },
       );
     }
-
     const { prompt } = await req.json();
 
-    if (!prompt || !prompt.trim()) {
+    if (!prompt || typeof prompt !== "string" || !prompt.trim()) {
       return NextResponse.json(
         { message: "プロンプトを入力してください" },
         { status: 400 },
       );
     }
 
-    const translatedPrompt = await translatePromptIfNeeded(prompt);
+    const translatedPrompt = (await translatePromptIfNeeded(prompt)).trim();
 
     console.log("original prompt::", prompt);
     console.log("translated prompt:", translatedPrompt);
@@ -49,6 +48,9 @@ export async function POST(req: Request) {
     );
 
     if (!stabilityRes.ok) {
+      const errorText = await stabilityRes.text();
+      console.error("Stability API error:", errorText);
+
       return NextResponse.json(
         { message: "画像生成に失敗しました" },
         { status: 500 },
