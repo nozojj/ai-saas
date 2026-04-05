@@ -16,16 +16,13 @@ AIを活用したサービス開発の理解を深めるために作成しまし
 ## 📸 スクリーンショット
 
 ### Dashboard
-
-![dashboard](./public/dashboard.png)
+<img src="./public/dashboard.png" width="700" />
 
 ### Generate
-
-![generate](./public/generate.png)
+<img src="./public/generate.png" width="700" />
 
 ### History
-
-![history](./public/history.png)
+<img src="./public/history.png" width="700" />
 
 ---
 
